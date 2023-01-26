@@ -14,12 +14,15 @@ class post{
         this.wtc = wtc;
     }
     link(){
-        console.log(url);
+        console.log(this.url);
     }
 }
-r.search({
+hi = []
+const results = r.search({
     query: 'slides',
     subreddit: 'FashionReps',
     sort: 'relevance'}
-).filter(post=>post.link_flair_text == "QC").map(post=>post.permalink).then(console.log)
+).filter(post=>post.link_flair_text == "QC").map(post=>post.permalink).then(x => new post(x, 1, 3)).then(console.log)
+
+
 
