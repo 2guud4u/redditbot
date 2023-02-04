@@ -8,21 +8,29 @@ r = new snoowrap({
 });
 
 class post{
-    constructor(url, rating, wtc){
-        this.url = url;
+    constructor(post_url, rating, wtc, comments){
+        this.post_url = post_url;
         this.rating = rating;
         this.wtc = wtc;
+        this.comments = comments
     }
     link(){
         console.log(this.url);
     }
 }
-hi = []
+list = []
+
 const results = r.search({
     query: 'slides',
     subreddit: 'FashionReps',
     sort: 'relevance'}
-).filter(post=>post.link_flair_text == "QC").map(post=>post.permalink).then(x => new post(x, 1, 3)).then(console.log)
+).filter(post=>post.link_flair_text == "QC").then(hi => {
+    for (let i of hi) {
+        obj = new post("https://www.reddit.com"+ i.permalink, 0, i.url, i.comments)
+        list.push(obj)
+    }
+    console.log(list)
+})
 
 
 
